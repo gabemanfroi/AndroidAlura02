@@ -1,5 +1,6 @@
 package gabemanfroi.com.tripadvisor.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -20,6 +21,8 @@ public class ListaPacotesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_pacotes);
 
         configuraListaDePacotes();
+        Intent intent = new Intent(this, DetalhesPacoteActivity.class);
+        startActivity(intent);
     }
 
     private void configuraListaDePacotes() {
