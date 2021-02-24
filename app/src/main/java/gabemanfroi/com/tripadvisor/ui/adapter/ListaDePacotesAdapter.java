@@ -1,5 +1,6 @@
 package gabemanfroi.com.tripadvisor.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -12,9 +13,9 @@ import android.widget.TextView;
 import java.util.List;
 
 import gabemanfroi.com.tripadvisor.R;
-import gabemanfroi.com.tripadvisor.util.ResourceUtil;
 import gabemanfroi.com.tripadvisor.model.Pacote;
 import gabemanfroi.com.tripadvisor.util.MoedaUtil;
+import gabemanfroi.com.tripadvisor.util.ResourceUtil;
 
 public class ListaDePacotesAdapter extends BaseAdapter {
 
@@ -60,6 +61,7 @@ public class ListaDePacotesAdapter extends BaseAdapter {
         preco.setText(MoedaUtil.formataParaBrasileiro(pacote.getPreco()));
     }
 
+    @SuppressLint("SetTextI18n")
     private void mostraDias(View view, Pacote pacote) {
         TextView dias = view.findViewById(R.id.item_pacote_dias);
         dias.setText(pacote.getDias() + (pacote.getDias() > 1 ? " dias" : " dia"));

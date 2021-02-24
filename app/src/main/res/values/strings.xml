@@ -2,4 +2,6 @@
     <string name="app_name">Trip Advisor</string>
     <string name="activityListaPacotesTitulo">Especiais</string>
     <string name="activityListaPacotesSubtitulo">Brasil</string>
+    <string name="descricaoFundoApp">Fundo Azul do Aplicativo</string>
+    <string name="descricaoImagemCidade">Imagem Representando a Cidade</string>
 </resources>

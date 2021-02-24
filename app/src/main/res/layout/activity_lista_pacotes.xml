@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.ListaPacotesActivity">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/activity_lista_pacotes_background"
         android:layout_width="0dp"
         android:layout_height="120dp"
+        android:contentDescription="@string/descricaoFundoApp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -22,26 +22,26 @@
         android:id="@+id/activity_lista_pacotes_titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
         android:layout_margin="20dp"
         android:text="@string/activityListaPacotesTitulo"
+        android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/activity_lista_pacotes_background"
+        app:layout_constraintEnd_toEndOf="@id/activity_lista_pacotes_background"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/activity_lista_pacotes_background"
+        app:layout_constraintTop_toTopOf="@id/activity_lista_pacotes_background"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/activity_lista_pacotes_subtitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
         android:layout_marginTop="8dp"
         android:text="@string/activityListaPacotesSubtitulo"
         android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/activity_lista_pacotes_titulo"
         app:layout_constraintTop_toBottomOf="@+id/activity_lista_pacotes_titulo" />
 
@@ -49,6 +49,8 @@
         android:id="@+id/lista_pacotes_list_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
