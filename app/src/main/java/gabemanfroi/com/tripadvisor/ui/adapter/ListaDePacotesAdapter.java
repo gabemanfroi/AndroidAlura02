@@ -44,6 +44,8 @@ public class ListaDePacotesAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        @SuppressLint("ViewHolder")
         View view = LayoutInflater.from(context).inflate(R.layout.item_pacote, parent, false);
 
         Pacote pacote = pacotes.get(position);
@@ -76,6 +78,6 @@ public class ListaDePacotesAdapter extends BaseAdapter {
 
     private void mostraLocal(View view, Pacote pacote) {
         TextView destino = view.findViewById(R.id.item_pacote_nome_destino);
-        destino.setText(pacote.getLocal());
+        destino.setText(pacote.getDestino());
     }
 }

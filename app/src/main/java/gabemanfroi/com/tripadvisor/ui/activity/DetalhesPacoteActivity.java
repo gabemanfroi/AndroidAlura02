@@ -1,57 +1,90 @@
 package gabemanfroi.com.tripadvisor.ui.activity;
 
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import gabemanfroi.com.tripadvisor.R;
 import gabemanfroi.com.tripadvisor.model.Pacote;
+import gabemanfroi.com.tripadvisor.util.DataUtil;
 import gabemanfroi.com.tripadvisor.util.MoedaUtil;
 import gabemanfroi.com.tripadvisor.util.ResourceUtil;
 
+import static gabemanfroi.com.tripadvisor.ui.activity.PacoteActivityConstantes.CHAVE_PACOTE;
+
 public class DetalhesPacoteActivity extends AppCompatActivity {
+
+    public static final String TITULO_APPBAR = "Resumo do Pacote";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_pacote);
-        Pacote pacote = new Pacote("São Paulo", "sao_paulo_sp", 2, new BigDecimal("249.99"));
 
-        setTitle("Resumo do Pacote");
+        setTitle(TITULO_APPBAR);
 
-        TextView destino = findViewById(R.id.activity_detalhes_pacote_destino);
-        destino.setText(pacote.getLocal());
+        carregaPacoteRecebido(getIntent());
 
-        ImageView imagem = findViewById(R.id.activity_detalhes_pacote_background_image);
-        Drawable drawable = ResourceUtil.devolveDrawable(this, pacote.getImagem());
-        imagem.setImageDrawable(drawable);
+    }
 
-        TextView dias = findViewById(R.id.activity_detalhes_pacote_dias);
-        dias.setText(pacote.getDias() + (pacote.getDias() > 1 ? " dias" : "dia"));
+    private void carregaPacoteRecebido(Intent intent) {
 
-        TextView total = findViewById(R.id.activity_detalhes_pacote_total);
-        total.setText(MoedaUtil.formataParaBrasileiro(pacote.getPreco()));
+        if (intent.hasExtra(CHAVE_PACOTE)) {
+            final Pacote pacote = (Pacote) intent.getSerializableExtra(CHAVE_PACOTE);
+            configuraViews(pacote);
+            configuraBotaoComprar(pacote);
+        }
+    }
 
-        TextView periodo = findViewById(R.id.activity_detalhes_pacote_periodo);
-        Calendar dataIda = Calendar.getInstance();
-        Calendar dataVolta = Calendar.getInstance();
-        dataVolta.add(Calendar.DATE, pacote.getDias());
+    private void configuraViews(final Pacote pacote) {
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM");
-        String dataFormatadaIda = simpleDateFormat.format(dataIda.getTime());
-        String dataFormatadaVolta = simpleDateFormat.format(dataVolta.getTime());
+        mostraDestino(pacote);
+        mostraImagem(pacote);
+        mostraDias(pacote);
+        mostraTotal(pacote);
+        mostraPeriodo(pacote);
 
-        String dataFormatadaViagem =
-                dataFormatadaIda + " - " + dataFormatadaVolta + " de " + dataVolta.get(Calendar.YEAR);
+    }
 
-        periodo.setText(dataFormatadaViagem);
+    private void configuraBotaoComprar(final Pacote pacote) {
+        Button botaoComprar = findViewById(R.id.activity_detalhes_pacote_botao_comprar);
+        botaoComprar.setOnClickListener(v -> {
+            navegaParaPagamento(pacote);
+        });
+    }
 
+    private void navegaParaPagamento(Pacote pacote) {
+        Intent intent = new Intent(DetalhesPacoteActivity.this, PagamentoActivity.class);
+        intent.putExtra(CHAVE_PACOTE, pacote);
+        startActivity(intent);
+    }
+
+    private void mostraPeriodo(Pacote pacote) {
+        TextView periodoTextView = findViewById(R.id.activity_detalhes_pacote_periodo);
+        periodoTextView.setText(DataUtil.periodoEmTexto(pacote.getDias()));
+    }
+
+    private void mostraTotal(Pacote pacote) {
+        TextView totalTextView = findViewById(R.id.activity_detalhes_pacote_total);
+        totalTextView.setText(MoedaUtil.formataParaBrasileiro(pacote.getPreco()));
+    }
+
+    private void mostraDias(Pacote pacote) {
+        TextView diasTextView = findViewById(R.id.activity_detalhes_pacote_dias);
+        diasTextView.setText(pacote.getDias() + (pacote.getDias() > 1 ? " dias" : "dia"));
+    }
+
+    private void mostraImagem(Pacote pacote) {
+        ImageView imagemImageView = findViewById(R.id.activity_detalhes_pacote_background_image);
+        imagemImageView.setImageDrawable(ResourceUtil.devolveDrawable(this, pacote.getImagem()));
+    }
+
+    private void mostraDestino(Pacote pacote) {
+        TextView destinoTextView = findViewById(R.id.activity_detalhes_pacote_destino);
+        destinoTextView.setText(pacote.getDestino());
     }
 }

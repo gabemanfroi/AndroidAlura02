@@ -1,7 +1,21 @@
 <resources>
     <string name="app_name">Trip Advisor</string>
-    <string name="activityListaPacotesTitulo">Especiais</string>
-    <string name="activityListaPacotesSubtitulo">Brasil</string>
-    <string name="descricaoFundoApp">Fundo Azul do Aplicativo</string>
-    <string name="descricaoImagemCidade">Imagem Representando a Cidade</string>
+    <string name="activity_lista_pacotes_titulo">Especiais</string>
+    <string name="activity_lista_pacotes_subtitulo">Brasil</string>
+    <string name="descricao_fundo_app">Fundo Azul do Aplicativo</string>
+    <string name="descricao_imagem_cidade">Imagem Representando a Cidade</string>
+    <string name="text_botao_finalizar_compra">Finalizar Compra</string>
+    <string name="header_preco_final">Preço final:</string>
+    <string name="texto_sao_paulo">São Paulo</string>
+    <string name="texto_background_image">Imagem de Fundo</string>
+    <string name="header_activity_pagamento">Digite as informações do cartão de crédito que você deseja usar para o pagamento</string>
+    <string name="activity_pagamento_header_valor_da_compra">Valor da Compra</string>
+    <string name="activity_header_pagamento_total_placeholder">R$421,50</string>
+    <string name="hint_numero_do_cartao">Número do Cartão</string>
+    <string name="hint_ano_vencimento">AA</string>
+    <string name="hint_nome_no_cartao">Nome no Cartão</string>
+    <string name="hint_mes_vencimento">MM</string>
+    <string name="hint_cvc">CVC</string>
+    <string name="text_botao_finaliza_compra">Finaliza Compra</string>
+    <string name="macara_nome_no_cartao">abcdefghijklmnopqrstuvwxyzçABCDEFGHIJKLMNOPQRSTUVWXYZÇ\u0020</string>
 </resources>
